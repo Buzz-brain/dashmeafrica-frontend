@@ -3,6 +3,7 @@ import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import MultipleUpload from "./MultipleUpload";
 
 const API_URL = import.meta.env.VITE_PUBLIC_API_URL;
 
@@ -202,6 +203,11 @@ const UploadPage = () => {
 								accept="image/*"
 								onChange={handleImageChange}
 							/>
+						</div>
+
+						<div>
+							<p className="mb-2">Feature Images</p>
+							<MultipleUpload addImage={() => {}} />
 						</div>
 
 						{/* Title */}

@@ -28,7 +28,7 @@ import GoShiip from "./components/GoShiip";
 import MyProducts from "./components/MyProducts";
 import RateComponent from "./components/RateComponent";
 import OTP from "./components/oneTimePayment";
-// import "./tailwind.css";
+import "./tailwind.css";
 
 // import Home from './components/Home';
 
