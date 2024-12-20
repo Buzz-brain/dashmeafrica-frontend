@@ -3,12 +3,10 @@ import { ImImages } from "react-icons/im";
 
 /**
  *
- * @param {{addImage(file:File):void}}} param0
+ * @param {{images:Map,setImages(file:Map|(prev:Map)=>void):void}}} param0
  * @returns
  */
-export default function MultipleUpload({ addImage }) {
-	const [images, setImages] = React.useState(new Map());
-
+export default function MultipleUpload({ images, setImages }) {
 	function addItem(item) {
 		if (images.size >= 10) return;
 		setImages((prev) => {
@@ -38,12 +36,12 @@ export default function MultipleUpload({ addImage }) {
 			<label
 				// onClick={() => addItem("ima")}
 				htmlFor="files"
-				className="size-24 bg-neutral-300 text-4xl grid place-items-center rounded-lg cursor-pointer gap-0"
+				className="size-28 bg-neutral-300 text-4xl grid place-items-center rounded-lg cursor-pointer gap-0"
 			>
-				{/* +{" "} */}
-				<span className="text-xs text-center">
+				+{" "}
+				{/* <span className="text-xs text-center">
 					click to add multiple images
-				</span>
+				</span> */}
 			</label>
 			<input
 				type="file"
@@ -52,7 +50,7 @@ export default function MultipleUpload({ addImage }) {
 				onChange={(ev) => addItem(ev.currentTarget.files?.[0])}
 			/>
 			{[...images.entries()].map(([key, img], i) => (
-				<div className="relative ">
+				<div className="relative rounded-lg bg-white p-3">
 					<span
 						onClick={() => removeItem(key)}
 						className="rotate-45 text-xl absolute font-bold -top-1 right-1 cursor-pointer rounded-full grid place-items-center p-0"
@@ -61,7 +59,7 @@ export default function MultipleUpload({ addImage }) {
 					</span>
 					<img
 						src={URL.createObjectURL(img)}
-						className="size-24 rounded-lg object-contain "
+						className="size-20 object-contain "
 					/>
 				</div>
 			))}

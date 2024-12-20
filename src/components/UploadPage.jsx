@@ -21,6 +21,7 @@ const UploadPage = () => {
 	});
 	const [isSubmitting, setIsSubmitting] = useState(false);
 	const [uploader, setUploader] = useState(null); // Store uploader info
+	const [images, setImages] = React.useState(new Map());
 
 	// Fetch uploader info on component mount
 	useEffect(() => {
@@ -88,6 +89,9 @@ const UploadPage = () => {
 			updatedData.append("price", formData.price);
 			updatedData.append("priceCategory", formData.priceCategory);
 			updatedData.append("location", formData.location);
+			[...images.values()].forEach((file, i) => {
+				updatedData.append(`featureImages`, file);
+			});
 
 			if (uploader) {
 				updatedData.append("uploader", uploader._id); // Assuming _id is the user ID
@@ -98,6 +102,7 @@ const UploadPage = () => {
 				updatedData.append("image", formData.image);
 			}
 
+			console.log([...updatedData.entries()]);
 			// Log the FormData content for debugging
 			// updatedData.forEach((value, key) => {
 			//   console.log(key, value);
@@ -207,7 +212,7 @@ const UploadPage = () => {
 
 						<div>
 							<p className="mb-2">Feature Images</p>
-							<MultipleUpload addImage={() => {}} />
+							<MultipleUpload images={images} setImages={setImages} />
 						</div>
 
 						{/* Title */}
