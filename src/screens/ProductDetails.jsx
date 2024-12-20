@@ -1,7 +1,7 @@
 // src/screens/ProductDetails.jsx
 
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import { Card, Button, Spinner, Alert, Badge } from "react-bootstrap";
 // import { useCart } from "../context/CartContext";
@@ -35,7 +35,7 @@ const ProductDetails = () => {
 		};
 		fetchProduct();
 	}, [id]);
-	console.log(product);
+	// console.log(product);
 
 	// const addToCartHandler = () => {
 	//   console.log("Adding to cart:", product); // Confirm the product data
@@ -138,10 +138,13 @@ const ProductDetails = () => {
 						)}
 
 						<div className="d-flex mt-4">
-							<Button variant="primary" className="me-2">
+							<Link
+								to={`/${product.uploader.username}`}
+								className="bg-[var(--bs-blue)] text-neutral-100 px-6 py-2 rounded-md"
+							>
 								Message Profile
-							</Button>
-							{/* <Button variant="outline-secondary">Add to Saved Items</Button> */}
+							</Link>
+							{/* <Button variant="primary">Add to Saved Items</Button> */}
 							{/* <Button variant="success" onClick={addToCartHandler}>Add to Cart</Button> */}
 							<Button
 								variant="success"

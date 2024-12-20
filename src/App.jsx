@@ -29,6 +29,7 @@ import MyProducts from "./components/MyProducts";
 import RateComponent from "./components/RateComponent";
 import OTP from "./components/oneTimePayment";
 import "./tailwind.css";
+import MesaageProfile from "./screens/MesaageProfile";
 
 // import Home from './components/Home';
 
@@ -50,8 +51,15 @@ const App = () => {
 							path="/"
 							element={
 								<>
-									{" "}
 									<Header /> <Hero /> <HomeScreen />{" "}
+								</>
+							}
+						/>
+						<Route
+							path="/:username"
+							element={
+								<>
+									<Header /> <MesaageProfile />
 								</>
 							}
 						/>
