@@ -32,8 +32,8 @@ export default function MesaageProfile() {
 						Report
 					</button>
 				</div>
-				<div className="flex-auto space-y-2 md:order-1 text-center md:text-start">
-					<h4 className="mb-4 font-bold">About:</h4>
+				<div className="flex-auto space-y-2 md:order-1  ">
+					<h4 className="mb-4 font-bold md:text-start text-center">About:</h4>
 					{[
 						{
 							key: "Location",
@@ -57,10 +57,17 @@ export default function MesaageProfile() {
 							<span className="">{item.value}</span>
 						</p>
 					))}
-					<h4 className="mt-4 font-semibold">Bio:</h4>
+					<h4 className="mt-4 font-semibold md:text-start text-center">Bio:</h4>
 					<p>Bio: I’m a student who sells random stuff for the extra cash</p>
 				</div>
 			</div>
+			{/* <Row className="px-5">
+				{products.map((product) => (
+					<Col key={product._id} sm={12} md={6} lg={4} xl={2}>
+						<Product product={product} />
+					</Col>
+				))}
+			</Row> */}
 		</section>
 	);
 }

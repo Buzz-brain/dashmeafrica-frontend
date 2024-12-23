@@ -139,7 +139,7 @@ const ProductDetails = () => {
 
 						<div className="d-flex mt-4">
 							<Link
-								to={`/${product.uploader.username}`}
+								to={`/profile/${product.uploader.username}`}
 								className="bg-[var(--bs-blue)] text-neutral-100 px-6 py-2 rounded-md"
 							>
 								Message Profile

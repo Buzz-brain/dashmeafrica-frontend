@@ -56,7 +56,7 @@ const App = () => {
 							}
 						/>
 						<Route
-							path="/:username"
+							path="/profile/:username"
 							element={
 								<>
 									<Header /> <MesaageProfile />
