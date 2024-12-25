@@ -1,12 +1,38 @@
 import React from "react";
 import { useNavigation, useParams, useRoutes } from "react-router-dom";
+import { API_URL } from "./../services/index";
+import Product from "../components/Product";
+import { Col, Row } from "react-bootstrap";
 
 export default function MesaageProfile() {
 	const { username } = useParams();
 
+	const [isFetching, setIsFetching] = React.useState(true);
+	const [userProfile, setUserProfile] = React.useState({});
+	const [isProduct, setIsProduct] = React.useState(true);
+
+	React.useEffect(() => {
+		fetchUserDetails();
+	}, []);
+
+	async function fetchUserDetails() {
+		try {
+			const res = await (
+				await fetch(`${API_URL}/api/users/message-profile?username=${username}`)
+			).json();
+
+			setUserProfile(res.data);
+		} catch (error) {
+		} finally {
+			setIsFetching(false);
+		}
+	}
+
+	if (isFetching) return <>Loading...</>;
+
 	return (
 		<section className="mx-16 py-10">
-			<div className="flex flex-col md:flex-row md:flex-wrap justify-between space-y-10 md:space-y-0">
+			<div className="flex flex-col md:flex-row md:flex-wrap justify-between space-y-10 md:space-y-0 mb-10">
 				<div className="flex-auto text-center flex flex-col items-center md:order-2">
 					<img
 						src="placeholder.png"
@@ -58,16 +84,46 @@ export default function MesaageProfile() {
 						</p>
 					))}
 					<h4 className="mt-4 font-semibold md:text-start text-center">Bio:</h4>
-					<p>Bio: I’m a student who sells random stuff for the extra cash</p>
+					<p> {userProfile.bio}</p>
 				</div>
 			</div>
-			{/* <Row className="px-5">
-				{products.map((product) => (
-					<Col key={product._id} sm={12} md={6} lg={4} xl={2}>
-						<Product product={product} />
-					</Col>
-				))}
-			</Row> */}
+			<div className="mb-5 border-b border-b-neutral-600">
+				<span className="flex gap-2">
+					<button
+						onClick={() => setIsProduct(!isProduct)}
+						className={`p-2 ${
+							isProduct && "bg-[var(--bs-success)] text-neutral-200"
+						}`}
+					>
+						Collection
+					</button>
+					<button
+						onClick={() => setIsProduct(!isProduct)}
+						className={`p-2 ${
+							!isProduct && "bg-[var(--bs-success)] text-neutral-200"
+						}`}
+					>
+						Reviews
+					</button>
+				</span>
+			</div>
+			<div>
+				{isProduct ? (
+					<>
+						<p>{userProfile.products.length || 0} items</p>
+						<Row className="px-5">
+							{userProfile.products &&
+								userProfile.products.map((product) => (
+									<Col key={product._id} sm={12} md={6} lg={4} xl={2}>
+										<Product product={product} />
+									</Col>
+								))}
+						</Row>
+					</>
+				) : (
+					<></>
+				)}
+			</div>
 		</section>
 	);
 }
