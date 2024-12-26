@@ -4,7 +4,7 @@ import { API_URL } from "./../services/index";
 import Product from "../components/Product";
 import { Col, Row } from "react-bootstrap";
 
-export default function MesaageProfile() {
+export default function MessageProfile() {
 	const { username } = useParams();
 
 	const [isFetching, setIsFetching] = React.useState(true);

@@ -29,7 +29,7 @@ import MyProducts from "./components/MyProducts";
 import RateComponent from "./components/RateComponent";
 import OTP from "./components/oneTimePayment";
 import "./tailwind.css";
-import MesaageProfile from "./screens/MesaageProfile";
+import MessageProfile from "./screens/MesaageProfile";
 
 // import Home from './components/Home';
 
@@ -56,10 +56,10 @@ const App = () => {
 							}
 						/>
 						<Route
-							path="/profile/:username"
+							path="/message-profile/:username"
 							element={
 								<>
-									<Header /> <MesaageProfile />
+									<Header /> <MessageProfile />
 								</>
 							}
 						/>

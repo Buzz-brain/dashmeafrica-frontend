@@ -29,6 +29,9 @@ const Profile = () => {
 							},
 						}
 					);
+
+					console.log(data);
+
 					setUser(data);
 					setFormData({
 						fullName: data.fullName || "",
